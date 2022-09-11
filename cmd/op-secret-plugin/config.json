@@ -1,0 +1,44 @@
+{
+  "description": "1Password Connect secrets provider",
+  "documentation": "https://raw.githubusercontent.com/wwmoraes/docker-engine-plugins/master/op-secret-plugin/README.md",
+  "entrypoint": [
+    "tini",
+    "--",
+    "op-secret-plugin"
+  ],
+  "env": [
+    {
+      "description": "1Password Connect host URL",
+      "name": "OP_CONNECT_HOST",
+      "settable": [
+        "value"
+      ],
+      "value": "http://localhost:8080"
+    },
+    {
+      "description": "1Password Connect access token",
+      "name": "OP_CONNECT_TOKEN",
+      "settable": [
+        "value"
+      ],
+      "value": ""
+    },
+    {
+      "description": "1Password Connect access token file",
+      "name": "OP_CONNECT_TOKEN_FILE",
+      "settable": [
+        "value"
+      ],
+      "value": "/run/secrets/op/token"
+    }
+  ],
+  "interface": {
+    "socket": "op.sock",
+    "types": [
+      "docker.secretprovider/1.0"
+    ]
+  },
+  "network": {
+    "type": "host"
+  }
+}

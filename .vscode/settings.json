@@ -1,0 +1,47 @@
+{
+  "cSpell.words": [
+    "aarch",
+    "armv",
+    "bouk",
+    "cifs",
+    "gcov",
+    "mapstructure",
+    "mitchellh",
+    "onepassword",
+    "rootfs",
+    "rootfsimage",
+    "secretdriver",
+    "XTEST"
+  ],
+  "go.coverageDecorator": {
+    "type": "highlight",
+    "coveredHighlightColor": "rgba(64,128,128,0.15)",
+    "uncoveredHighlightColor": "rgba(128,64,64,0.15)",
+    "coveredBorderColor": "rgba(64,128,128,0.3)",
+    "uncoveredBorderColor": "rgba(128,64,64,0.3)",
+    "coveredGutterStyle": "blockblue",
+    "uncoveredGutterStyle": "slashyellow"
+  },
+  "go.coverOnSave": true,
+  "go.coverageOptions": "showBothCoveredAndUncoveredCode",
+  "go.lintFlags": [
+    "--fast"
+  ],
+  "go.lintTool": "golangci-lint",
+  "go.testFlags": [
+    "-race",
+    "-ldflags=\"-s=false\"",
+    "-gcflags=all=-l"
+  ],
+  "go.testEnvVars": {
+    "GOARCH": "amd64"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "*-plugin/config.json"
+      ],
+      "url": ".vscode/vnd.docker.plugin.v1.schema.json"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  cifs:
+    build:
+      context: .
+      dockerfile: cmd/cifs-volume-plugin/Dockerfile
+    image: wwmoraes/cifs-volume-plugin:dev
+    container_name: cifs
+    cap_add:
+    - SYS_ADMIN

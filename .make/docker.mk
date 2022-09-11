@@ -1,0 +1,3 @@
+TAG ?= latest
+GO_VERSION ?= 1.18
+ALPINE_VERSION ?= 3.16

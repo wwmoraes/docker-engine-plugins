@@ -1,0 +1,56 @@
+{
+  "description": "CIFS volume provider",
+  "documentation": "https://raw.githubusercontent.com/wwmoraes/docker-engine-plugins/master/cifs-volume-plugin/README.md",
+  "entrypoint": [
+    "tini",
+    "--",
+    "cifs-volume-plugin"
+  ],
+  "env": [
+    {
+      "description": "Path containing SAMBA credential files",
+      "name": "CREDENTIALS_PATH",
+      "value": "/run/secrets"
+    },
+    {
+      "description": "Default SAMBA mount options",
+      "name": "DEFAULT_OPTIONS",
+      "settable": [
+        "value"
+      ],
+      "value": ""
+    }
+  ],
+  "interface": {
+    "socket": "cifs.sock",
+    "types": [
+      "docker.volumedriver/1.0"
+    ]
+  },
+  "linux": {
+    "capabilities": [
+      "CAP_SYS_ADMIN",
+      "CAP_DAC_READ_SEARCH"
+    ]
+  },
+  "mounts": [
+    {
+      "description": "Directory with credential files",
+      "destination": "/run/secrets",
+      "name": "credentials",
+      "options": [
+        "rbind",
+        "ro"
+      ],
+      "settable": [
+        "source"
+      ],
+      "source": "/run/secrets/cifs",
+      "type": "bind"
+    }
+  ],
+  "network": {
+    "type": "host"
+  },
+  "propagatedMount": "/var/lib/docker-volumes"
+}
