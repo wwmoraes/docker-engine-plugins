@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "additionalProperties": false,
+  "description": "https://docs.docker.com/engine/extend/config/#plugin-config-version-1-of-plugin-v2",
+  "properties": {
+    "args": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "description": "description of the args.",
+          "type": "string"
+        },
+        "name": {
+          "description": "name of the args.",
+          "type": "string"
+        },
+        "settable": {
+          "items": {
+            "enum": [
+              "value"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "value": {
+          "description": "values of the args.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "description": {
+      "description": "description of the plugin",
+      "type": "string"
+    },
+    "dockerversion": {
+      "description": "Docker Version used to create the plugin",
+      "type": "string"
+    },
+    "documentation": {
+      "description": "link to the documentation about the plugin",
+      "type": "string"
+    },
+    "entrypoint": {
+      "description": "entrypoint of the plugin, see https://docs.docker.com/engine/reference/builder/#entrypoint",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "env": {
+      "description": "environment variables of the plugin",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "description of the env.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the env.",
+            "type": "string"
+          },
+          "settable": {
+            "items": {
+              "enum": [
+                "value"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "value": {
+            "description": "value of the env.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "interface": {
+      "additionalProperties": false,
+      "description": "interface implemented by the plugins, struct consisting of the following fields",
+      "properties": {
+        "socket": {
+          "description": "name of the socket the engine should use to communicate with the plugins. the socket will be created in /run/docker/plugins.",
+          "type": "string"
+        },
+        "types": {
+          "description": "types indicate what interface(s) the plugin currently implements.",
+          "items": {
+            "enum": [
+              "docker.volumedriver/1.0",
+              "docker.secretdriver/1.0",
+              "docker.networkdriver/1.0",
+              "docker.ipamdriver/1.0",
+              "docker.authz/1.0",
+              "docker.logdriver/1.0",
+              "docker.metricscollector/1.0"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "ipchost": {
+      "description": "Access to host ipc namespace.",
+      "type": "boolean"
+    },
+    "linux": {
+      "additionalProperties": false,
+      "properties": {
+        "allowAllDevices": {
+          "description": "If /dev is bind mounted from the host and this is set to true, the plugin will have rwm access to all devices on the host.",
+          "type": "boolean"
+        },
+        "capabilities": {
+          "description": "capabilities of the plugin (Linux only), see https://github.com/opencontainers/runc/blob/master/libcontainer/SPEC.md#security",
+          "items": {
+            "enum": [
+              "CAP_NET_RAW",
+              "CAP_NET_BIND_SERVICE",
+              "CAP_AUDIT_READ",
+              "CAP_AUDIT_WRITE",
+              "CAP_DAC_OVERRIDE",
+              "CAP_SETFCAP",
+              "CAP_SETPCAP",
+              "CAP_SETGID",
+              "CAP_SETUID",
+              "CAP_MKNOD",
+              "CAP_CHOWN",
+              "CAP_FOWNER",
+              "CAP_FSETID",
+              "CAP_KILL",
+              "CAP_SYS_CHROOT",
+              "CAP_NET_BROADCAST",
+              "CAP_SYS_MODULE",
+              "CAP_SYS_RAWIO",
+              "CAP_SYS_PACCT",
+              "CAP_SYS_ADMIN",
+              "CAP_SYS_NICE",
+              "CAP_SYS_RESOURCE",
+              "CAP_SYS_TIME",
+              "CAP_SYS_TTY_CONFIG",
+              "CAP_AUDIT_CONTROL",
+              "CAP_MAC_OVERRIDE",
+              "CAP_MAC_ADMIN",
+              "CAP_NET_ADMIN",
+              "CAP_SYSLOG",
+              "CAP_DAC_READ_SEARCH",
+              "CAP_LINUX_IMMUTABLE",
+              "CAP_IPC_LOCK",
+              "CAP_IPC_OWNER",
+              "CAP_SYS_PTRACE",
+              "CAP_SYS_BOOT",
+              "CAP_LEASE",
+              "CAP_WAKE_ALARM",
+              "CAP_BLOCK_SUSPEND"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "devices": {
+          "description": "device of the plugin, (Linux only), struct consisting of the following fields, see https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#devices",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "description": {
+                "description": "description of the device.",
+                "type": "string"
+              },
+              "name": {
+                "description": "name of the device.",
+                "type": "string"
+              },
+              "path": {
+                "description": "path of the device.",
+                "type": "string"
+              },
+              "settable": {
+                "items": {
+                  "enum": [
+                    "path"
+                  ],
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "mounts": {
+      "description": "mount of the plugin, see https://github.com/opencontainers/runtime-spec/blob/master/config.md#mounts",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "description of the mount.",
+            "type": "string"
+          },
+          "destination": {
+            "description": "destination of the mount.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the mount.",
+            "type": "string"
+          },
+          "options": {
+            "description": "options of the mount.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "settable": {
+            "description": "specify which fields can be configured by the user.",
+            "items": {
+              "enum": [
+                "source"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "source": {
+            "description": "source of the mount.",
+            "type": "string"
+          },
+          "type": {
+            "description": "mount type.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "network": {
+      "additionalProperties": false,
+      "description": "network of the plugin",
+      "properties": {
+        "type": {
+          "description": "network type",
+          "enum": [
+            "bridge",
+            "host",
+            "none"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pidhost": {
+      "description": "Access to host pid namespace.",
+      "type": "boolean"
+    },
+    "propagatedMount": {
+      "description": "path to be mounted as rshared, so that mounts under that path are visible to docker. This is useful for volume plugins. This path will be bind-mounted outside of the plugin rootfs so it's contents are preserved on upgrade.",
+      "type": "string"
+    },
+    "user": {
+      "additionalProperties": false,
+      "properties": {
+        "gid": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "uid": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "workdir": {
+      "additionalProperties": false,
+      "description": "workdir of the plugin, see https://docs.docker.com/engine/reference/builder/#workdir",
+      "type": "string"
+    }
+  },
+  "title": "Docker plugin configuration"
+}
