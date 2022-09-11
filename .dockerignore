@@ -1,0 +1,16 @@
+.git
+.github
+vendor
+
+**/.env*
+**/.editorconfig
+**/Dockerfile
+.dockerignore
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+Makefile
+README.md
+SECURITY.md
+
+.wakatime-project
