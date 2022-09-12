@@ -23,11 +23,11 @@ repos:
   hooks:
   - id: check-json5
 - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-  rev: 2.4.0
+  rev: 2.6.1
   hooks:
   - id: editorconfig-checker
 - repo: https://github.com/igorshubovych/markdownlint-cli
-  rev: v0.32.1
+  rev: v0.32.2
   hooks:
   - id: markdownlint
 - repo: https://github.com/hadolint/hadolint
